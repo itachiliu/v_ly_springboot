@@ -18,5 +18,5 @@ public class Survey implements Serializable {
 
 
 
-    // 省略构造函数、Getter和Setter
+// 省略构造函数、Getter和Setter
 }
