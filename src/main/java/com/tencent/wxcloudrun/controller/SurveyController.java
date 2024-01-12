@@ -1,6 +1,7 @@
 package com.tencent.wxcloudrun.controller;
 
 import com.tencent.wxcloudrun.model.SurveyProcessor;
+import com.tencent.wxcloudrun.model.SurveyReceiver;
 import com.tencent.wxcloudrun.service.SurveyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,17 +35,39 @@ public class SurveyController {
 
 
     // 可以添加更多的方法来获取调查结果等
-    @RequestMapping(value = "/api/survey",method = RequestMethod.POST)
+    @RequestMapping(value = "/api/surveyProcessor",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<?> submitSurvey(@RequestBody SurveyProcessor surveyProcessor) {
+    public ResponseEntity<?> submitSurveyProcessor(@RequestBody SurveyProcessor surveyProcessor) {
         // 处理问卷数据，例如保存到数据库
         logger.info("-----------this is survey---------------");
         logger.info("processor:" + surveyProcessor.getPrivacyInformationProcessor());
 
-        surveyService.saveSurveyProcessor(surveyProcessor);
-        return ResponseEntity.ok("问卷提交成功");
+        try {
+            surveyService.saveSurveyProcessor(surveyProcessor);
+            return ResponseEntity.ok("个人信息处理人提交成功");
+        } catch (Exception e) {
+            logger.error(e.toString());
+            return (ResponseEntity<?>) ResponseEntity.status(400);
+        }
+
     }
 
+    // 可以添加更多的方法来获取调查结果等
+    @RequestMapping(value = "/api/surveyReceiver",method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<?> submitSurveyReceiver(@RequestBody SurveyReceiver surveyReceiver) {
+        // 处理问卷数据，例如保存到数据库
+        logger.info("-----------this is survey---------------");
+        logger.info("processor:" + surveyReceiver.getPrivacyInformationReceiver());
+        try {
+        surveyService.saveSurveyReceiver(surveyReceiver);
+        return ResponseEntity.ok("问卷提交成功");
+        } catch (Exception e) {
+            logger.error(e.toString());
+            return (ResponseEntity<?>) ResponseEntity.status(400);
+        }
+
+    }
 }
 
 

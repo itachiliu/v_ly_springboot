@@ -10,7 +10,7 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
-          <factory-entry name="springboot-wxcloudrun" />
+          <factory-entry name="springboot-wxcloudrun" value="5e7bcc64-8f8b-4e71-99b8-47d89a39ea34" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>

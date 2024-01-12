@@ -1,6 +1,7 @@
 package com.tencent.wxcloudrun.service;
 
 import com.tencent.wxcloudrun.model.SurveyProcessor;
+import com.tencent.wxcloudrun.model.SurveyReceiver;
 
 /**
  * @Author: Liuyan
@@ -8,7 +9,8 @@ import com.tencent.wxcloudrun.model.SurveyProcessor;
  * @Version 1.0
  */
 public interface SurveyService {
-    SurveyProcessor saveSurveyProcessor(SurveyProcessor survey);
+    void saveSurveyProcessor(SurveyProcessor survey);
 
 
+    void saveSurveyReceiver(SurveyReceiver surveyReceiver);
 }

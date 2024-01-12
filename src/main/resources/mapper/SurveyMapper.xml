@@ -5,6 +5,9 @@
         insert into  SurveyProcessor(privacyInformationProcessor, privacyInformationProcessorContactPerson, privacyInformationProcessorContactWay, privacyInformationProcessorAddr, contactPersonDuty)
             value (#{privacyInformationProcessor},#{privacyInformationProcessorContactPerson},#{privacyInformationProcessorContactWay},#{privacyInformationProcessorAddr},#{contactPersonDuty})
     </insert>
-
+    <insert id="saveSurveyReceiver" parameterType="com.tencent.wxcloudrun.model.SurveyReceiver">
+        insert into  SurveyReceiver(privacyInformationReceiver, privacyInformationReceiverAddr, privacyInformationReceiverContactWay, privacyInformationReceiverContactPerson, contactPersonDuty)
+            value (#{privacyInformationReceiver},#{privacyInformationReceiverAddr},#{privacyInformationReceiverContactWay},#{privacyInformationReceiverContactPerson},#{contactPersonDuty})
+    </insert>
 
 </mapper>
