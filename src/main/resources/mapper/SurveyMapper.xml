@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.tencent.wxcloudrun.dao.SurveyMapper">
-
-
-    <select id="getSurvey" resultType="com.tencent.wxcloudrun.model.Survey">
-
-    </select>
+    <insert id="saveSurvey" parameterType="com.tencent.wxcloudrun.model.SurveyProcessor">
+        insert into  SurveyProcessor(privacyInformationProcessor, privacyInformationProcessorContactPerson, privacyInformationProcessorContactWay, privacyInformationProcessorAddr, contactPersonDuty)
+            value (#{privacyInformationProcessor},#{privacyInformationProcessorContactPerson},#{privacyInformationProcessorContactWay},#{privacyInformationProcessorAddr},#{contactPersonDuty})
+    </insert>
 
 
 </mapper>

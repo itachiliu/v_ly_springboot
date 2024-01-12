@@ -3,7 +3,7 @@ package com.tencent.wxcloudrun.service.impl;
 
 
 import com.tencent.wxcloudrun.dao.SurveyMapper;
-import com.tencent.wxcloudrun.model.Survey;
+import com.tencent.wxcloudrun.model.SurveyProcessor;
 import com.tencent.wxcloudrun.service.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,18 +15,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SurveyServiceImpl implements SurveyService {
-
-    final SurveyMapper surveyMapper;
-
-    public SurveyServiceImpl(@Autowired SurveyMapper surveyMapper) {
-        this.surveyMapper = surveyMapper;
-    }
-
-
+    @Autowired
+    SurveyMapper surveyMapper;
 
     @Override
-    public Survey saveSurvey(Survey survey) {
-        return survey;
-    }
+    public SurveyProcessor saveSurveyProcessor(SurveyProcessor survey) {
 
+        surveyMapper.saveSurvey(survey);
+        return null;
+    }
 }

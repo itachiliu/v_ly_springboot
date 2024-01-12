@@ -1,13 +1,13 @@
 package com.tencent.wxcloudrun.dao;
 
-import com.tencent.wxcloudrun.model.Survey;
+import com.tencent.wxcloudrun.model.SurveyProcessor;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface SurveyMapper {
 
-    Survey getSurvey(@Param("id") Integer id);
+
+    public void saveSurvey(SurveyProcessor surveyProcessor);
 
 
 }
