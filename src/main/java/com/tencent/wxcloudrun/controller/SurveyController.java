@@ -88,7 +88,7 @@ public class SurveyController {
             String filename = "test.pdf"; // 根据surveyID确定的文件名
             // 构建文件的完整URL
             String fileUrl = request.getScheme() + "://" + request.getServerName() + ":" +
-                    env.getProperty("local.server.port") + "/static/" + filename;
+                    env.getProperty("local.server.port") + "/" + filename;
             return fileUrl;
         } catch (Exception e) {
             e.printStackTrace();
