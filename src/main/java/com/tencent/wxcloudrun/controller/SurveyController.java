@@ -66,12 +66,10 @@ public class SurveyController {
     public ResponseEntity<?> submitSurveyReceiver(@RequestBody SurveyReceiver surveyReceiver) {
         // 处理问卷数据，例如保存到数据库
         logger.info("-----------this is survey receiver---------------");
-        //logger.info("processor:" + surveyReceiver.getPrivacyInformationReceiver());
+        logger.info("surveyID:" + surveyReceiver.getSurveyID());
         try {
-        surveyService.saveSurveyReceiver(surveyReceiver);
-
-
-        return ResponseEntity.ok("问卷提交成功");
+            surveyService.saveSurveyReceiver(surveyReceiver);
+            return ResponseEntity.ok(surveyReceiver.getSurveyID());
         } catch (Exception e) {
             logger.error(e.toString());
             return (ResponseEntity<?>) ResponseEntity.status(400);
