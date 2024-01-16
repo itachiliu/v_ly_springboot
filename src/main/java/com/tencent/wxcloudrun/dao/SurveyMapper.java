@@ -8,4 +8,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface SurveyMapper {
     void saveSurvey(SurveyProcessor surveyProcessor);
     void saveSurveyReceiver(SurveyReceiver surveyReceiver);
+    void selectSurveyByID(String surveyID);
 }

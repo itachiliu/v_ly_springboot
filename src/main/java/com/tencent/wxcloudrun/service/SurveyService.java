@@ -16,5 +16,5 @@ public interface SurveyService {
 
     void saveSurveyReceiver(SurveyReceiver surveyReceiver);
 
-    void createPdf(String src, String dest, String textToInsert) throws IOException;
+    void createPdf(String surveyID) throws IOException;
 }

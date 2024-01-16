@@ -30,8 +30,8 @@ public class PdfGenerate {
     private static final String TEMPLATE_PATH = "template/template.pdf";
     private static final String IMAGE_PATH = "template/signet.png";
 
-    private static final String TEXT_RESULT_PATH = "target/text_result.pdf";
-    private static final String IMAGE_RESULT_PATH = "target/image_result.pdf";
+    private static final String TEXT_RESULT_PATH = "src/main/resources/static/text_result.pdf";
+    private static final String IMAGE_RESULT_PATH = "src/main/resources/static/image_result.pdf";
 
 //    public static void main(String[] args) {
 //        //文字填充样例

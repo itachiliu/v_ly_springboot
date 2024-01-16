@@ -43,9 +43,9 @@ public class SurveyServiceImpl implements SurveyService {
 
 
     @Override
-    public void createPdf(String src, String dest, String textToInsert) throws IOException {
+    public void createPdf(String surveyID) throws IOException {
 
-        //surveyMapper.selectSurveyByID
+        //surveyMapper.selectSurveyByID(surveyID);
         PdfGenerate.fillTextDemo();
         //PdfGenerate.fillImageDemo();
 

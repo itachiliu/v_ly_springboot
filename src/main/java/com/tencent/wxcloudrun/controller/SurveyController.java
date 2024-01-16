@@ -3,6 +3,9 @@ package com.tencent.wxcloudrun.controller;
 import com.tencent.wxcloudrun.model.SurveyProcessor;
 import com.tencent.wxcloudrun.model.SurveyReceiver;
 import com.tencent.wxcloudrun.service.SurveyService;
+
+import org.springframework.core.env.Environment;
+import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,10 +28,13 @@ public class SurveyController {
 
     final SurveyService surveyService;
     final Logger logger;
+    final private Environment env;
 
-    public SurveyController(@Autowired SurveyService surveyService) {
+
+    public SurveyController(@Autowired SurveyService surveyService, @Autowired Environment env) {
         this.surveyService = surveyService;
-        this.logger = LoggerFactory.getLogger(CounterController.class);
+        this.logger = LoggerFactory.getLogger(SurveyController.class);
+        this.env = env;
     }
 
 
@@ -74,15 +80,19 @@ public class SurveyController {
     }
 
     @GetMapping("/create")
-    public ResponseEntity<String> createPdf(@RequestParam String text) {
+    public String createPdf(@RequestParam String surveyID, HttpServletRequest request) {
         try {
-            String src = "E:\\template.pdf";
-            String dest = "E:\\output.pdf";
-            surveyService.createPdf(src, dest, text);
-            return ResponseEntity.ok("PDF created successfully");
+            surveyService.createPdf(surveyID);
+
+
+            String filename = "test.pdf"; // 根据surveyID确定的文件名
+            // 构建文件的完整URL
+            String fileUrl = request.getScheme() + "://" + request.getServerName() + ":" +
+                    env.getProperty("local.server.port") + "/static/" + filename;
+            return fileUrl;
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error creating PDF");
+            return "Error downloading PDF";
         }
     }
 

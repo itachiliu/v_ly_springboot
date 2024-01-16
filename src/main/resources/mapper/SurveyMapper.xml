@@ -9,5 +9,8 @@
         insert into  SurveyReceiver(privacyInformationReceiver, privacyInformationReceiverAddr, privacyInformationReceiverContactWay, privacyInformationReceiverContactPerson, contactPersonDuty, surveyID)
             value (#{privacyInformationReceiver},#{privacyInformationReceiverAddr},#{privacyInformationReceiverContactWay},#{privacyInformationReceiverContactPerson},#{contactPersonDuty}, #{surveyID})
     </insert>
+    <select id="selectSurveyByID">
+
+    </select>
 
 </mapper>
