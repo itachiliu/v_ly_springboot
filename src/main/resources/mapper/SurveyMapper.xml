@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.tencent.wxcloudrun.dao.SurveyMapper">
     <insert id="saveSurvey" parameterType="com.tencent.wxcloudrun.model.SurveyProcessor">
-        insert into  SurveyProcessor(privacyInformationProcessor, privacyInformationProcessorContactPerson, privacyInformationProcessorContactWay, privacyInformationProcessorAddr, contactPersonDuty)
-            value (#{privacyInformationProcessor},#{privacyInformationProcessorContactPerson},#{privacyInformationProcessorContactWay},#{privacyInformationProcessorAddr},#{contactPersonDuty})
+        insert into  SurveyProcessor(privacyInformationProcessor, privacyInformationProcessorContactPerson, privacyInformationProcessorContactWay, privacyInformationProcessorAddr, contactPersonDuty,surveyID)
+            value (#{privacyInformationProcessor},#{privacyInformationProcessorContactPerson},#{privacyInformationProcessorContactWay},#{privacyInformationProcessorAddr},#{contactPersonDuty}, #{surveyID})
     </insert>
     <insert id="saveSurveyReceiver" parameterType="com.tencent.wxcloudrun.model.SurveyReceiver">
-        insert into  SurveyReceiver(privacyInformationReceiver, privacyInformationReceiverAddr, privacyInformationReceiverContactWay, privacyInformationReceiverContactPerson, contactPersonDuty)
-            value (#{privacyInformationReceiver},#{privacyInformationReceiverAddr},#{privacyInformationReceiverContactWay},#{privacyInformationReceiverContactPerson},#{contactPersonDuty})
+        insert into  SurveyReceiver(privacyInformationReceiver, privacyInformationReceiverAddr, privacyInformationReceiverContactWay, privacyInformationReceiverContactPerson, contactPersonDuty, surveyID)
+            value (#{privacyInformationReceiver},#{privacyInformationReceiverAddr},#{privacyInformationReceiverContactWay},#{privacyInformationReceiverContactPerson},#{contactPersonDuty}, #{surveyID})
     </insert>
 
 </mapper>

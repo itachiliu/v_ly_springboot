@@ -7,13 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Calendar;
 
 /**
  * @Author: Liuyan
@@ -39,12 +37,16 @@ public class SurveyController {
     @ResponseBody
     public ResponseEntity<?> submitSurveyProcessor(@RequestBody SurveyProcessor surveyProcessor) {
         // 处理问卷数据，例如保存到数据库
-        logger.info("-----------this is survey---------------");
+        logger.info("-----------this is survey Processor ---------------");
         logger.info("processor:" + surveyProcessor.getPrivacyInformationProcessor());
+        //用时间戳标识问卷ID，用于表查询
+        String surveyID = String.valueOf(Calendar.getInstance().getTimeInMillis());
+        surveyProcessor.setSurveyID(surveyID);
 
         try {
             surveyService.saveSurveyProcessor(surveyProcessor);
-            return ResponseEntity.ok("个人信息处理人提交成功");
+
+            return ResponseEntity.ok(surveyID);
         } catch (Exception e) {
             logger.error(e.toString());
             return (ResponseEntity<?>) ResponseEntity.status(400);
@@ -57,10 +59,12 @@ public class SurveyController {
     @ResponseBody
     public ResponseEntity<?> submitSurveyReceiver(@RequestBody SurveyReceiver surveyReceiver) {
         // 处理问卷数据，例如保存到数据库
-        logger.info("-----------this is survey---------------");
-        logger.info("processor:" + surveyReceiver.getPrivacyInformationReceiver());
+        logger.info("-----------this is survey receiver---------------");
+        //logger.info("processor:" + surveyReceiver.getPrivacyInformationReceiver());
         try {
         surveyService.saveSurveyReceiver(surveyReceiver);
+
+
         return ResponseEntity.ok("问卷提交成功");
         } catch (Exception e) {
             logger.error(e.toString());
@@ -68,6 +72,21 @@ public class SurveyController {
         }
 
     }
+
+    @GetMapping("/create")
+    public ResponseEntity<String> createPdf(@RequestParam String text) {
+        try {
+            String src = "E:\\template.pdf";
+            String dest = "E:\\output.pdf";
+            surveyService.createPdf(src, dest, text);
+            return ResponseEntity.ok("PDF created successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error creating PDF");
+        }
+    }
+
+
 }
 
 

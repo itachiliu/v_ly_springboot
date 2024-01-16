@@ -20,6 +20,8 @@ public class SurveyProcessor {
 
     private String contactPersonDuty;
 
+    private String surveyID;
+
     public String getPrivacyInformationProcessor() {
         return privacyInformationProcessor;
     }
@@ -60,4 +62,11 @@ public class SurveyProcessor {
         this.contactPersonDuty = contactPersonDuty;
     }
 
+    public String getSurveyID() {
+        return surveyID;
+    }
+
+    public void setSurveyID(String surveyID) {
+        this.surveyID = surveyID;
+    }
 }

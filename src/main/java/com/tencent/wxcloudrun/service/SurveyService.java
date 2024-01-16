@@ -3,6 +3,8 @@ package com.tencent.wxcloudrun.service;
 import com.tencent.wxcloudrun.model.SurveyProcessor;
 import com.tencent.wxcloudrun.model.SurveyReceiver;
 
+import java.io.IOException;
+
 /**
  * @Author: Liuyan
  * @Date: 2024/1/10 上午 11:29
@@ -13,4 +15,6 @@ public interface SurveyService {
 
 
     void saveSurveyReceiver(SurveyReceiver surveyReceiver);
+
+    void createPdf(String src, String dest, String textToInsert) throws IOException;
 }

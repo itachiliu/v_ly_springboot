@@ -2,12 +2,23 @@ package com.tencent.wxcloudrun.service.impl;
 
 
 
+
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.*;
+
 import com.tencent.wxcloudrun.dao.SurveyMapper;
 import com.tencent.wxcloudrun.model.SurveyProcessor;
 import com.tencent.wxcloudrun.model.SurveyReceiver;
 import com.tencent.wxcloudrun.service.SurveyService;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.tencent.wxcloudrun.util.PdfGenerate;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: Liuyan
@@ -27,5 +38,20 @@ public class SurveyServiceImpl implements SurveyService {
     @Override
     public void saveSurveyReceiver(SurveyReceiver surveyReceiver) {
         surveyMapper.saveSurveyReceiver(surveyReceiver);
+    }
+
+
+
+    @Override
+    public void createPdf(String src, String dest, String textToInsert) throws IOException {
+
+        //surveyMapper.selectSurveyByID
+        PdfGenerate.fillTextDemo();
+        //PdfGenerate.fillImageDemo();
+
+
+
+
+
     }
 }

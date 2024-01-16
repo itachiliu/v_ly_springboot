@@ -18,6 +18,8 @@ public class SurveyReceiver {
 
     private String contactPersonDuty;
 
+    private String surveyID;
+
     public String getPrivacyInformationReceiver() {
         return privacyInformationReceiver;
     }
@@ -56,5 +58,13 @@ public class SurveyReceiver {
 
     public void setContactPersonDuty(String contactPersonDuty) {
         this.contactPersonDuty = contactPersonDuty;
+    }
+
+    public String getSurveyID() {
+        return surveyID;
+    }
+
+    public void setSurveyID(String surveyID) {
+        this.surveyID = surveyID;
     }
 }
