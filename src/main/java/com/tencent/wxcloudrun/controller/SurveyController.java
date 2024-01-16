@@ -80,6 +80,7 @@ public class SurveyController {
     @GetMapping("/create")
     public String createPdf(@RequestParam String surveyID, HttpServletRequest request) {
         try {
+            logger.info("-----------this is survey create---------------");
             surveyService.createPdf(surveyID);
 
 
@@ -87,6 +88,7 @@ public class SurveyController {
             // 构建文件的完整URL
             String fileUrl = request.getScheme() + "://" + request.getServerName() + ":" +
                     env.getProperty("local.server.port") + "/" + filename;
+            logger.info("fileUrl:" + fileUrl);
             return fileUrl;
         } catch (Exception e) {
             e.printStackTrace();
