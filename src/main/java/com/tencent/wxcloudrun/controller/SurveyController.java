@@ -63,13 +63,19 @@ public class SurveyController {
     // 可以添加更多的方法来获取调查结果等
     @RequestMapping(value = "/api/surveyReceiver",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<?> submitSurveyReceiver(@RequestBody SurveyReceiver surveyReceiver) {
+    public ResponseEntity<?> submitSurveyReceiver(@RequestBody SurveyReceiver surveyReceiver, HttpServletRequest request) {
         // 处理问卷数据，例如保存到数据库
         logger.info("-----------this is survey receiver---------------");
         logger.info("surveyID:" + surveyReceiver.getSurveyID());
         try {
             surveyService.saveSurveyReceiver(surveyReceiver);
-            return ResponseEntity.ok(surveyReceiver.getSurveyID());
+            surveyService.createPdf(surveyReceiver.getSurveyID());
+            String filename = "test.pdf"; // 根据surveyID确定的文件名
+            // 构建文件的完整URL
+            String fileUrl = request.getScheme() + "://" + request.getServerName() + ":" +
+                    env.getProperty("local.server.port") + "/" + filename;
+            logger.info("fileUrl:" + fileUrl);
+            return ResponseEntity.ok(fileUrl);
         } catch (Exception e) {
             logger.error(e.toString());
             return (ResponseEntity<?>) ResponseEntity.status(400);
@@ -81,15 +87,9 @@ public class SurveyController {
     public String createPdf(@RequestParam String surveyID, HttpServletRequest request) {
         try {
             logger.info("-----------this is survey create---------------");
-            surveyService.createPdf(surveyID);
 
 
-            String filename = "test.pdf"; // 根据surveyID确定的文件名
-            // 构建文件的完整URL
-            String fileUrl = request.getScheme() + "://" + request.getServerName() + ":" +
-                    env.getProperty("local.server.port") + "/" + filename;
-            logger.info("fileUrl:" + fileUrl);
-            return fileUrl;
+            return "";
         } catch (Exception e) {
             e.printStackTrace();
             return "Error downloading PDF";
