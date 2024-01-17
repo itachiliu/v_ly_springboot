@@ -72,7 +72,7 @@ public class SurveyController {
             surveyService.createPdf(surveyReceiver.getSurveyID());
             String filename = "test.pdf"; // 根据surveyID确定的文件名
             // 构建文件的完整URL
-            String fileUrl = request.getScheme() + "://" + request.getServerName() + ":" +
+            String fileUrl = "https" + "://" + request.getServerName() + ":" +
                     env.getProperty("local.server.port") + "/" + filename;
             logger.info("fileUrl:" + fileUrl);
             return ResponseEntity.ok(fileUrl);
